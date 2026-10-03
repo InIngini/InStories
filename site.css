@@ -1,0 +1,367 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;800&family=Literata:opsz,wght@7..72,400;7..72,600&display=swap');
+
+:root {
+    --violet: #9a63ff;
+    --violet-hover: #8348f0;
+    --violet-deep: #6b3fd4;
+    --ink: #2a2145;
+    --muted: #7a7194;
+    --wash: #f1ecfd;
+    --bg: #f7f4fd;
+    --card: #ffffff;
+    --paper: #fffefb;
+    --line: #e3daf6;
+    --shadow: 0 10px 36px rgba(107, 63, 212, 0.12);
+    --ui: 'Manrope', 'Segoe UI', Tahoma, sans-serif;
+    --prose: 'Literata', Georgia, 'Times New Roman', serif;
+    --gap: 24px;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --violet: #b08cff;
+        --violet-hover: #c2a4ff;
+        --violet-deep: #cdb8ff;
+        --ink: #ece7fb;
+        --muted: #a79fc4;
+        --wash: #2a2347;
+        --bg: #17132a;
+        --card: #211b3b;
+        --paper: #1b1633;
+        --line: #3a3160;
+        --shadow: 0 10px 36px rgba(0, 0, 0, 0.4);
+    }
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: var(--ui);
+    background-color: var(--bg);
+    color: var(--ink);
+    line-height: 1.5;
+}
+
+/* ---------- шапка ---------- */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px max(24px, calc((100% - 960px) / 2));
+    background-color: var(--card);
+    border-bottom: 1px solid var(--line);
+}
+
+header .logo {
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--violet);
+}
+
+header nav a {
+    display: inline-block;
+    padding: 8px 18px;
+    border-radius: 999px;
+    color: var(--violet-deep);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+header nav a:hover { background-color: var(--wash); transform: translateY(-1px); }
+header nav a[aria-current="page"] { background-color: var(--wash); }
+
+/* ---------- каркас ---------- */
+main {
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 48px 20px 0;
+    flex: 1;
+}
+
+h1 {
+    text-align: center;
+    font-size: 40px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin: 0 0 32px;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin: 56px 0 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--card);
+    padding: 32px;
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    box-shadow: var(--shadow);
+    animation: rise 0.6s cubic-bezier(.2, .7, .2, 1) both;
+}
+
+/* единственная «постановочная» анимация при загрузке */
+@keyframes rise {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: none; }
+}
+
+label {
+    display: block;
+    margin: 0 0 8px;
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--violet-deep);
+}
+
+textarea {
+    display: block;
+    width: 100%;
+    min-height: 240px;
+    padding: 16px 18px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background-color: var(--paper);
+    color: var(--ink);
+    font-family: var(--prose);
+    font-size: 17px;
+    line-height: 1.7;
+    resize: vertical;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: var(--violet);
+    box-shadow: 0 0 0 4px rgba(154, 99, 255, 0.18);
+}
+
+/* ---------- счётчики и кнопки ---------- */
+.counters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 4px 20px;
+    margin: 10px 0 20px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+}
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+button[type="submit"],
+input[type="button"] {
+    position: relative;
+    font-family: var(--ui);
+    padding: 12px 24px;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+
+button[type="submit"] { background-color: var(--violet); color: #fff; }
+
+button[type="submit"]:hover {
+    background-color: var(--violet-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(154, 99, 255, 0.35);
+}
+
+input[type="button"] {
+    background-color: var(--wash);
+    color: var(--violet-deep);
+    border-color: var(--line);
+}
+
+input[type="button"]:hover { border-color: var(--violet); transform: translateY(-2px); }
+
+button[type="submit"]:active,
+input[type="button"]:active { transform: translateY(0); box-shadow: none; }
+
+input:focus-visible,
+a:focus-visible {
+    outline: 3px solid var(--violet);
+    outline-offset: 2px;
+}
+
+/* спиннер вместо текста кнопки (ширина кнопки не меняется) */
+.spinner {
+    display: none;
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+}
+
+button.loading { cursor: progress; pointer-events: none; }
+button.loading .btn-label { visibility: hidden; }
+button.loading .spinner { display: block; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.hint {
+    align-self: center;
+    font-size: 13px;
+    color: var(--muted);
+}
+
+/* ---------- результат ---------- */
+#resultBlock {
+    margin-top: 28px;
+    padding-top: 28px;
+    border-top: 1px dashed var(--line);
+}
+
+#resultBlock .actions { margin-top: 16px; }
+
+/* появляется при display:block, когда JS показывает блок */
+#resultBlock { animation: reveal 0.45s ease-out both; }
+
+@keyframes reveal {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: none; }
+}
+
+#copyMessage {
+    position: fixed;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 24px;
+    border-radius: 999px;
+    background-color: var(--ink);
+    color: var(--bg);
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    z-index: 1000;
+    animation: toast 2s ease both;
+}
+
+@keyframes toast {
+    0%   { opacity: 0; transform: translate(-50%, 12px); }
+    12%  { opacity: 1; transform: translate(-50%, 0); }
+    85%  { opacity: 1; transform: translate(-50%, 0); }
+    100% { opacity: 0; transform: translate(-50%, 6px); }
+}
+
+/* ---------- примеры ---------- */
+.example {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto 1fr;
+    gap: 8px 16px;
+}
+
+.example .block {
+    display: grid;
+    grid-row: span 2;
+    grid-template-rows: subgrid;
+    gap: 8px;
+    min-width: 0;
+}
+
+.example .label {
+    align-self: end;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--violet-deep);
+}
+
+.example .textarea {
+    height: 100%;
+    min-height: 280px;
+    font-size: 14px;
+    line-height: 1.6;
+    background-color: var(--wash);
+    resize: none;
+}
+
+/* ---------- функции ---------- */
+#instrackt {
+    margin: 0;
+    padding: 24px 28px;
+    border-radius: 16px;
+    border-left: 5px solid var(--violet);
+    background-color: var(--wash);
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.75;
+    color: var(--ink);
+}
+
+#instrackt ol { margin: 0; padding-left: 22px; }
+#instrackt li { margin-bottom: 4px; }
+
+/* ---------- подвал ---------- */
+footer {
+    margin-top: 64px;
+    padding: 28px 20px;
+    text-align: center;
+    background-color: var(--ink);
+    color: var(--bg);
+    font-size: 14px;
+}
+
+footer p { margin: 6px 0; }
+
+footer a {
+    display: inline-block;
+    margin: 0 12px;
+    color: var(--bg);
+    text-decoration: none;
+    font-weight: 600;
+    opacity: 0.8;
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+footer a:hover { opacity: 1; transform: translateY(-2px); }
+
+/* ---------- мобильные ---------- */
+@media (max-width: 860px) {
+    main { padding-top: 32px; }
+    h1 { font-size: 32px; }
+    form { padding: 20px; }
+    header { padding: 12px 18px; }
+    .example { grid-template-columns: 1fr; grid-template-rows: none; }
+    .example .block { grid-row: auto; grid-template-rows: auto auto; }
+    .example .textarea { height: auto; }
+}
+
+@media (max-width: 480px) {
+    .actions > input, .actions > button { flex: 1 1 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+    .spinner { animation: spin 1.6s linear infinite !important; }
+}

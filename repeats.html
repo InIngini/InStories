@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="author" content="Ingini" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Поиск повторов</title>
+    <link rel="stylesheet" href="site.css" />
+    <link rel="stylesheet" href="home.css" />
+    <link rel="stylesheet" href="tools.css" />
+    <link href="images/iconka2.ico" rel="shortcut icon" type="image/x-icon" />
+</head>
+<body>
+    <header>
+        <span class="logo">InStories</span>
+        <nav><a href="index.html">Главная</a><a href="repeats.html" aria-current="page">Повторы</a><a href="diff.html">Сравнение</a></nav>
+    </header>
+    <main>
+        <h1>Поиск повторов</h1>
+        <form id="toolForm" onsubmit="return false;">
+            <label for="src">Текст главы</label>
+            <textarea id="src" placeholder="Вставь сюда текст"></textarea>
+            <div class="tool-options">
+                <label class="radio-option">
+                    <input type="checkbox" id="optMerge" checked> Учитывать формы слов (смотрел, смотрела…)
+                </label>
+            </div>
+            <div class="actions">
+                <input type="button" class="primary" value="Найти повторы" onclick="analyze()" />
+                <input type="button" value="Взять из редактора" onclick="fromEditor()" />
+                <input type="button" value="Очистить" onclick="clearAll()" />
+            </div>
+
+            <div id="results" hidden>
+                <h2 class="result-title">Частые слова</h2>
+                <p class="note">Слова от 4 букв, которые встречаются 3 раза и чаще. Нажми на слово, чтобы увидеть его в тексте.</p>
+                <div id="freqList" class="chips"></div>
+
+                <h2 class="result-title">Одинаковые начала предложений</h2>
+                <p class="note">Первые слова, с которых начинаются 4 предложения и больше, и серии из 3 предложений подряд.</p>
+                <div id="startList" class="chips"></div>
+                <ul id="runList"></ul>
+
+                <h2 class="result-title">Слова-паразиты</h2>
+                <p class="note">Встречаются 2 раза и чаще. В скобках частота на 1000 слов. Не всё из этого плохо, это просто повод перечитать.</p>
+                <div id="fillerList" class="chips"></div>
+
+                <div id="previewWrap" hidden>
+                    <h2 class="result-title">Текст с подсветкой</h2>
+                    <div id="previewBox"></div>
+                </div>
+            </div>
+        </form>
+    </main>
+    <footer>
+        <p id="link">
+            <a href="https://vk.com/lngini" target="_blank">VK</a>
+            <a href="https://t.me/InginiBlog" target="_blank" rel="noopener">Telegram</a>
+            <a href="https://github.com/InIngini" target="_blank">GitHub</a>
+            <a href="https://ficbook.net/authors/2049261" target="_blank">Ficbook</a>
+        </p>
+        <p>© Ingini</p>
+    </footer>
+    <script src="repeats.js"></script>
+</body>
+</html>

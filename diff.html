@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="author" content="Ingini" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Сравнение версий</title>
+    <link rel="stylesheet" href="site.css" />
+    <link rel="stylesheet" href="home.css" />
+    <link rel="stylesheet" href="tools.css" />
+    <link href="images/iconka2.ico" rel="shortcut icon" type="image/x-icon" />
+</head>
+<body>
+    <header>
+        <span class="logo">InStories</span>
+        <nav><a href="index.html">Главная</a><a href="repeats.html">Повторы</a><a href="diff.html" aria-current="page">Сравнение</a></nav>
+    </header>
+    <main>
+        <h1>Сравнение версий</h1>
+        <form id="toolForm" onsubmit="return false;">
+            <div class="two-col">
+                <div>
+                    <label for="oldText">Старая версия</label>
+                    <textarea id="oldText" placeholder="Вставь сюда прежний текст"></textarea>
+                </div>
+                <div>
+                    <label for="newText">Новая версия</label>
+                    <textarea id="newText" placeholder="Вставь сюда новый текст"></textarea>
+                </div>
+            </div>
+            <div class="tool-options">
+                <label class="radio-option">
+                    <input type="checkbox" id="optOnly"> Показывать только изменения
+                </label>
+            </div>
+            <div class="actions">
+                <input type="button" class="primary" value="Сравнить" onclick="compare()" />
+                <input type="button" value="Поменять местами" onclick="swapTexts()" />
+                <input type="button" value="Очистить" onclick="clearAll()" />
+            </div>
+            <div id="diffResult" hidden>
+                <h2 class="result-title">Что изменилось</h2>
+                <p id="diffStats" class="note"></p>
+                <div id="diffOut"></div>
+            </div>
+        </form>
+    </main>
+    <footer>
+        <p id="link">
+            <a href="https://vk.com/lngini" target="_blank">VK</a>
+            <a href="https://t.me/InginiBlog" target="_blank" rel="noopener">Telegram</a>
+            <a href="https://github.com/InIngini" target="_blank">GitHub</a>
+            <a href="https://ficbook.net/authors/2049261" target="_blank">Ficbook</a>
+        </p>
+        <p>© Ingini</p>
+    </footer>
+    <script src="diff.js"></script>
+</body>
+</html>

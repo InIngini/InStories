@@ -1,0 +1,75 @@
+#radioBox {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 20px 32px;
+    align-items: center;
+    margin-bottom: 28px;
+    padding: 20px 24px;
+    background-color: var(--wash);
+    border-radius: 18px;
+}
+
+#radioBoxTeg, #radioBoxParagraph, #radioBoxQuotes, #radioBoxExtra { min-width: 0; }
+
+.radio-label {
+    margin: 0 0 10px;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: left;
+    color: var(--violet-deep);
+}
+
+.radio-group { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+
+.radio-option {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    padding: 8px 18px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background-color: var(--card);
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--ink);
+    cursor: pointer;
+    transition: border-color 0.2s, background-color 0.2s, color 0.2s, transform 0.15s;
+}
+
+.radio-option input { margin: 0; accent-color: var(--violet); }
+
+.radio-option:hover { border-color: var(--violet); transform: translateY(-1px); }
+
+.radio-option:has(input:checked) {
+    border-color: var(--violet);
+    background-color: var(--violet);
+    color: #fff;
+}
+
+.radio-option:has(input:checked) input { accent-color: #fff; }
+
+.radio-option:has(input:focus-visible) {
+    outline: 3px solid var(--violet);
+    outline-offset: 2px;
+}
+
+.cat-image {
+    width: 88px;
+    height: 88px;
+    object-fit: contain;
+    animation: breathe 4s ease-in-out infinite;
+    transform-origin: 50% 90%;
+    grid-column: 3;
+    grid-row: 1 / span 2;
+}
+
+@keyframes breathe {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    50%      { transform: scale(1.05) rotate(-2deg); }
+}
+
+@media (max-width: 700px) {
+    #radioBox { grid-template-columns: 1fr; justify-items: start; }
+    .cat-image { grid-column: auto; grid-row: auto; justify-self: center; }
+}

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="author" content="Ingini" />
+    <meta name="keywords" content="оформление,редактор,фикбук,ficbook,ingini,instories" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Редактор</title>
+    <link rel="stylesheet" href="site.css" />
+    <link rel="stylesheet" href="home.css" />
+    <link href="images/iconka2.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="images/iconka2.ico" rel="icon" type="image/ico" />
+</head>
+<body>
+    <header>
+        <span class="logo">InStories</span>
+        <nav>
+            <a href="/" aria-current="page">Главная</a><a href="repeats.html">Повторы</a><a href="diff.html">Сравнение</a>
+        </nav>
+    </header>
+    <main>
+        <h1>Редактор</h1>
+
+        <form id="editorForm" onsubmit="return false;">
+
+            <div id="radioBox">
+                <div id="radioBoxTeg">
+                    <label class="radio-label">Добавлять ли &lt;tab&gt; и &lt;center&gt;?</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="OptionT" value="да" checked> Да
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="OptionT" value="нет"> Нет
+                        </label>
+                    </div>
+                </div>
+                <div id="radioBoxParagraph">
+                    <label class="radio-label">Добавлять ли абзац между диалогом и текстом?</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="OptionP" value="да" checked> Да
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="OptionP" value="нет"> Нет
+                        </label>
+                    </div>
+                </div>
+                <div id="radioBoxQuotes">
+                    <label class="radio-label">Какие кавычки ставить?</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="OptionQ" value="прямые" checked> Прямые "..."
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="OptionQ" value="ёлочки"> Ёлочки &laquo;...&raquo;
+                        </label>
+                    </div>
+                </div>
+                <div id="radioBoxExtra">
+                    <label class="radio-label">Дополнительно</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="checkbox" id="optEllipsis"> ... &rarr; &hellip;
+                        </label>
+                        <label class="radio-option">
+                            <input type="checkbox" id="optSpaces"> Лишние пробелы
+                        </label>
+                    </div>
+                </div>
+                <img src="images/cat3.svg" class="cat-image" alt="Cat Image">
+            </div>
+
+            <label for="myTextarea">Введите текст</label>
+            <textarea id="myTextarea" name="Текст" oninput="countWords()"></textarea>
+
+            <div class="counters">
+                <div id="wordCount">Количество слов: 0</div>
+                <div id="charCount">Количество символов: 0 / 100 000</div>
+                <div id="extraCount">Без пробелов: 0, абзацев: 0, чтение: —</div>
+            </div>
+            <div class="actions">
+                <button type="submit" id="formatBtn" onclick="formatText()"><span class="btn-label">Редактировать</span><span class="spinner" aria-hidden="true"></span></button>
+                <span class="hint">Ctrl + Enter</span>
+            </div>
+
+            <div id="resultBlock" style="display:none;">
+                <label for="outputTextarea">Оформленный текст</label>
+                <textarea id="outputTextarea" readonly></textarea>
+                <div class="actions">
+                    <input type="button" value="Скопировать" onclick="copyToClipboard()" />
+                    <input type="button" value="Скачать .txt" onclick="downloadText()" />
+                    <input type="button" value="Очистить" onclick="clearText()" />
+                </div>
+            </div>
+
+            <div id="exampleLabel" class="section-title">Пример</div>
+            <div class="example">
+                <div class="block">
+                    <div class="label">Текст</div>
+                    <textarea readonly class="textarea" rows="10">
+Здравствуйте. это короткий пример для вас
+
+рассмотрим парочку случаев: 
+- Вот это у нас диалог. обратите внимание, что тут есть пробел после тире
+-а тут нет! И так работать тоже будет!
+***
+Как вы видите, диалог и простой текст могут разделяться абзацами (если вы этого хотите).
+- Диалог.
+- Очень интересный диалог. 
+Текст. 
+
+Еще можно поставить пустой абзац не к месту, но он не сохранится. 
+
+
+
+Но много абзацев сведутся к одному.
+На этом у меня все, спасибо за внимание!
+                    </textarea>
+                </div>
+                <div class="block">
+                    <div class="label">С &lt;tab&gt; и &lt;center&gt; и пустыми абзацами</div>
+                    <textarea readonly class="textarea" rows="10">
+&lt;tab&gt;Здравствуйте. Это короткий пример для вас.
+&lt;tab&gt;Рассмотрим парочку случаев:
+
+&lt;tab&gt;— Вот это у нас диалог. Обратите внимание, что тут есть пробел после тире.
+&lt;tab&gt;— А тут нет! И так работать тоже будет!
+
+&lt;center&gt;***&lt;/center&gt;
+&lt;tab&gt;Как вы видите, диалог и простой текст разделяются абзацами.
+
+&lt;tab&gt;— Диалог.
+&lt;tab&gt;— Очень интересный диалог.
+
+&lt;tab&gt;Текст.
+&lt;tab&gt;Еще можно поставить пустой абзац не к месту, но он не сохранится.
+&lt;tab&gt;Но много абзацев сведутся к одному.
+&lt;tab&gt;На этом у меня все, спасибо за внимание!
+                    </textarea>
+                </div>
+                <div class="block">
+                    <div class="label">Без &lt;tab&gt; и &lt;center&gt; и без пустых абзацев</div>
+                    <textarea readonly class="textarea" rows="10">
+Здравствуйте. Это короткий пример для вас.
+Рассмотрим парочку случаев:
+— Вот это у нас диалог. Обратите внимание, что тут есть пробел после тире.
+— А тут нет! И так работать тоже будет!
+
+***
+
+Как вы видите, диалог и простой текст не разделяются абзацами.
+— Диалог.
+— Очень интересный диалог.
+Текст.
+Еще можно поставить пустой абзац не к месту, но он не сохранится.
+Но много абзацев сведутся к одному.
+На этом у меня все, спасибо за внимание!
+                    </textarea>
+                </div>
+            </div>
+
+            <div id="instracktLabel" class="section-title">Функции</div>
+            <div id="instrackt">
+                Основная функция: редактирование текста с использованием инструментов, принятых на некоторых сайтах, в частности Фикбуке (&lt;tab&gt;, &lt;center&gt;).
+                <br /><br />
+                Конкретнее о подфункциях:
+                <ol>
+                    <li>Все короткие тире «-» заменяются на длинные «—», если это не дефис;</li>
+                    <li>Каждый новый абзац начинается с отступа (если вы так хотите);</li>
+                    <li>Между абзацами разного типа (простой текст и диалог) ставится пустая строка (если вы так хотите);</li>
+                    <li>Разделение в виде последовательности «***» или более, помещается в центр;</li>
+                    <li>Большое количество пустых строк сводится к одной;</li>
+                    <li>Повышение регистра первой буквы в абзаце и знака пунктуации;</li>
+                    <li>Проставление точек в конце абзаца, если нет чего-либо из пунктуации;</li>
+                    <li>Выбор кавычек: прямые или «ёлочки»;</li>
+                    <li>По желанию: «...» заменяются на «…», убираются двойные пробелы и пробелы перед знаками препинания;</li>
+                    <li>Разделители сцен вида «---», «* * *», «~~~» приводятся к «***»;</li>
+                    <li>Черновик и настройки сохраняются в браузере, так что текст не пропадёт после перезагрузки;</li>
+                    <li>Результат можно скачать файлом .txt, а редактирование запускается по Ctrl + Enter.</li>
+                </ol>
+            </div>
+        </form>
+    </main>
+    <footer>
+        <p id="link">
+            <a href="https://vk.com/lngini" target="_blank">VK</a>
+            <a href="https://t.me/InginiBlog" target="_blank" rel="noopener">Telegram</a>
+            <a href="https://github.com/InIngini" target="_blank">GitHub</a>
+            <a href="https://ficbook.net/authors/2049261" target="_blank">Ficbook</a>
+        </p>
+        <p>© Ingini</p>
+    </footer>
+
+    <script src="editor.js"></script>
+</body>
+</html>
