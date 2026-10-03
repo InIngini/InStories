@@ -1,1 +1,1 @@
-# InStoriesWebDiplom
+# InStories
